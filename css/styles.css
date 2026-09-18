@@ -119,6 +119,7 @@ a {
   min-height: clamp(560px, 66vh, 690px);
 }
 .heroText {
+  position: relative;
   background: #eee7dc;
   padding: clamp(42px, 4vw, 68px);
   display: flex;
@@ -523,6 +524,18 @@ h1 {
   background: #f1e9dc;
   transform: translateY(-2px);
 }
+.instagram-hero {
+  position: absolute;
+  top: 24px;
+  left: clamp(30px, 4vw, 68px);
+  border-color: #c8ad84;
+  background: rgba(255, 255, 255, .72);
+  box-shadow: 0 8px 24px rgba(45, 37, 27, .08);
+}
+.instagram-hero:hover {
+  background: var(--white);
+  box-shadow: 0 12px 28px rgba(45, 37, 27, .14);
+}
 .instagram-link svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; }
 .instagram-link .instagram-dot { fill: currentColor; stroke: none; }
 .instagram-link > span:not(.instagram-arrow) { display: flex; flex-direction: column; gap: 1px; }
@@ -576,8 +589,9 @@ h1 {
     padding: 0 20px;
   }
   .heroText {
-    padding: 44px 30px 46px;
+    padding: 112px 30px 46px;
   }
+  .instagram-hero { top: 28px; left: 30px; }
   .hero p {
     max-width: 560px;
     margin: 0 0 26px;
@@ -620,6 +634,7 @@ h1 {
 @media (max-width: 520px) {
   .material-nav { justify-content: flex-start; padding: 0 18px; }
   .brand { font-size: 29px; }
+  .instagram-hero { right: 20px; left: 20px; width: auto; }
   .product-buy { align-items: stretch; flex-direction: column; }
   .add-to-cart { width: 100%; }
   .cart-content, .cart-head { padding-left: 18px; padding-right: 18px; }

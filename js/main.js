@@ -41,13 +41,18 @@ const categoryNames = {
   anillos: "todos los anillos",
 };
 
+let activeCategory = "todos";
+
 function showCategory(category = "todos", shouldScroll = false) {
   const selectedCategory = categoryNames[category] ? category : "todos";
+  const onlyInStock = document.querySelector("#stock-filter").checked;
   let visibleProducts = 0;
+  activeCategory = selectedCategory;
 
-  catalogCards.forEach((card) => {
+  catalogCards.forEach((card, index) => {
     const productCategory = card.querySelector(".meta b").textContent.trim().split(" ")[0].toLowerCase();
-    const isVisible = selectedCategory === "todos" || productCategory === selectedCategory;
+    const matchesCategory = selectedCategory === "todos" || productCategory === selectedCategory;
+    const isVisible = matchesCategory && (!onlyInStock || products[index].inStock);
     card.hidden = !isVisible;
     if (isVisible) visibleProducts += 1;
   });
@@ -56,7 +61,8 @@ function showCategory(category = "todos", shouldScroll = false) {
     filter.classList.toggle("is-active", filter.dataset.category === selectedCategory);
     filter.setAttribute("aria-current", filter.dataset.category === selectedCategory ? "true" : "false");
   });
-  catalogResult.textContent = `Mostrando ${categoryNames[selectedCategory]} · ${visibleProducts} piezas`;
+  const stockLabel = onlyInStock ? " disponibles" : "";
+  catalogResult.textContent = `Mostrando ${categoryNames[selectedCategory]}${stockLabel} · ${visibleProducts} piezas`;
 
   if (shouldScroll) {
     document.querySelector("#catalogo").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -139,6 +145,8 @@ cartItems.addEventListener("click", (event) => {
   if (button.dataset.action === "remove" || item.quantity === 0) cart = cart.filter((candidate) => candidate.id !== button.dataset.id);
   saveAndRender();
 });
+
+document.querySelector("#stock-filter").addEventListener("change", () => showCategory(activeCategory));
 
 document.querySelector("#open-cart").addEventListener("click", openCart);
 document.querySelector("#close-cart").addEventListener("click", closeCart);

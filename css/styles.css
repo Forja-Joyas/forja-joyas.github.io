@@ -106,19 +106,18 @@ h3 {
   font-weight: 500;
 }
 h1 {
-  font-size: 64px;
-  line-height: 0.95;
+  max-width: 540px;
+  font-size: clamp(48px, 5.1vw, 72px);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
   margin: 15px 0 22px;
 }
 .hero p {
-  max-width: 520px;
-  margin: 22px 0 30px;
-  color: var(--ink);
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(29px, 2.65vw, 43px);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  max-width: 470px;
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
 }
 .btn {
   display: inline-block;
@@ -136,6 +135,10 @@ h1 {
 .btn:hover {
   background: var(--gold);
 }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; }
+.text-link { padding-bottom: 4px; border-bottom: 1px solid var(--gold); color: #725a36; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.hero-benefits { display: flex; gap: 20px; margin: 28px 0 0; padding: 18px 0 0; border-top: 1px solid #d8ccbb; list-style: none; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
+.hero-benefits li::before { content: "✓"; margin-right: 7px; color: #54725b; font-weight: 700; }
 .heroImg {
   min-width: 0;
   overflow: hidden;
@@ -170,18 +173,18 @@ h1 {
   gap: 18px;
 }
 .fair-strip {
-  width: min(calc(100% - 48px), 1080px);
-  margin: -36px auto 70px;
-  padding: 20px 24px;
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--gold);
-  background: var(--white);
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: 18px clamp(24px, 4vw, 58px);
+  border-bottom: 1px solid #d9cbb5;
+  background: #f1e9dc;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 28px;
-  box-shadow: 0 10px 30px rgba(45, 37, 27, 0.06);
 }
+.fair-strip-heading { display: flex; align-items: center; gap: 14px; }
+.fair-icon { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border: 1px solid #c8ad84; border-radius: 50%; color: var(--gold); }
 .fair-strip-heading h2 { margin: 3px 0 0; font-size: 29px; line-height: 1; }
 .fair-strip-info { padding-left: 28px; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; }
 .fair-strip-info strong { font: 500 18px "Cormorant Garamond", serif; }
@@ -248,7 +251,10 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
-.catalog-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: -5px 0 8px; }
+.catalog-toolbar { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px 22px; margin: -5px 0 10px; }
+.catalog-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.stock-filter { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; cursor: pointer; }
+.stock-filter input { width: 17px; height: 17px; accent-color: var(--ink); }
 .catalog-filter { min-width: 105px; padding: 10px 16px; border: 1px solid var(--line); background: white; text-align: center; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; }
 .catalog-filter:hover, .catalog-filter.is-active { border-color: var(--ink); background: var(--ink); color: white; }
 .catalog-result { margin: 0 0 24px; color: var(--muted); text-align: center; font-size: 12px; }
@@ -496,8 +502,7 @@ h1 {
   }
   .hero p {
     max-width: 560px;
-    margin: 18px 0 26px;
-    font-size: clamp(29px, 6.75vw, 39px);
+    margin: 0 0 26px;
   }
   .heroImg {
     height: min(112vw, 560px);
@@ -517,7 +522,7 @@ h1 {
   .story {
     grid-template-columns: 1fr;
   }
-  .fair-strip { margin-top: -26px; grid-template-columns: 1fr auto; gap: 14px 22px; }
+  .fair-strip { grid-template-columns: 1fr auto; gap: 14px 22px; }
   .fair-strip-info { grid-column: 1 / -1; grid-row: 2; padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line); }
   .personalize { grid-template-columns: 1fr; }
   .fairs {
@@ -543,7 +548,7 @@ h1 {
   .fair-card { grid-template-columns: 1fr; }
   .fair-date { min-height: 145px; }
   .fair-details { padding: 30px 24px 34px; }
-  .fair-strip { width: calc(100% - 40px); margin-bottom: 52px; padding: 18px; grid-template-columns: 1fr; }
+  .fair-strip { width: 100%; margin-bottom: 0; padding: 18px 20px; grid-template-columns: 1fr; }
   .fair-strip .fair-link { justify-self: start; }
   .fair-strip-info { grid-column: auto; grid-row: auto; }
   .catalog-filter { min-width: calc(50% - 4px); }

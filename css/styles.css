@@ -209,7 +209,10 @@ h1 {
 }
 .card {
   background: white;
+  border: 1px solid var(--line);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
+.card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(45, 37, 27, .09); }
 .photo {
   aspect-ratio: 4/5;
   overflow: hidden;
@@ -233,14 +236,14 @@ h1 {
   color: var(--muted);
   margin-top: 4px;
 }
-.product-buy { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--line); }
+.product-buy { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin-top: 14px; padding: 13px 0 0; border-top: 1px solid var(--line); }
 .product-buy > div { display: flex; flex-direction: column; gap: 5px; }
 .product-buy strong { font-size: 15px; }
 .stock { display: inline-flex; align-items: center; gap: 5px; width: max-content; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
 .stock::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .stock-yes { color: #497052; }
 .stock-no { color: #9b4b47; }
-.add-to-cart { border: 1px solid var(--ink); background: var(--ink); color: white; min-width: 88px; padding: 10px 9px; font: 600 10px "DM Sans", sans-serif; letter-spacing: .08em; cursor: pointer; }
+.add-to-cart { border: 1px solid var(--ink); background: var(--ink); color: white; min-width: 116px; padding: 10px 9px; font: 600 9px "DM Sans", sans-serif; letter-spacing: .07em; cursor: pointer; }
 .add-to-cart:hover { background: var(--gold); border-color: var(--gold); }
 .add-to-cart:disabled { background: transparent; border-color: #c8c2b9; color: #9c968e; cursor: not-allowed; }
 .cart-open { overflow: hidden; }
@@ -397,6 +400,8 @@ h1 {
 }
 @media (max-width: 520px) {
   .brand { font-size: 29px; }
+  .product-buy { align-items: stretch; flex-direction: column; }
+  .add-to-cart { width: 100%; }
   .cart-content, .cart-head { padding-left: 18px; padding-right: 18px; }
   .cart-item { grid-template-columns: 72px 1fr; }
   .cart-item img { width: 72px; height: 92px; }

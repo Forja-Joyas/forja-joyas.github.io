@@ -33,6 +33,35 @@ const cartItems = document.querySelector("#cart-items");
 const emptyState = document.querySelector("#cart-empty");
 const checkoutForm = document.querySelector("#checkout-form");
 const cartCount = document.querySelector("#cart-count");
+const catalogResult = document.querySelector("#catalog-result");
+const categoryNames = {
+  todos: "todos los productos",
+  collares: "todos los collares",
+  pulseras: "todas las pulseras",
+  anillos: "todos los anillos",
+};
+
+function showCategory(category = "todos", shouldScroll = false) {
+  const selectedCategory = categoryNames[category] ? category : "todos";
+  let visibleProducts = 0;
+
+  catalogCards.forEach((card) => {
+    const productCategory = card.querySelector(".meta b").textContent.trim().split(" ")[0].toLowerCase();
+    const isVisible = selectedCategory === "todos" || productCategory === selectedCategory;
+    card.hidden = !isVisible;
+    if (isVisible) visibleProducts += 1;
+  });
+
+  document.querySelectorAll(".catalog-filter").forEach((filter) => {
+    filter.classList.toggle("is-active", filter.dataset.category === selectedCategory);
+    filter.setAttribute("aria-current", filter.dataset.category === selectedCategory ? "true" : "false");
+  });
+  catalogResult.textContent = `Mostrando ${categoryNames[selectedCategory]} · ${visibleProducts} piezas`;
+
+  if (shouldScroll) {
+    document.querySelector("#catalogo").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 function openCart() {
   drawer.classList.add("is-open");
@@ -81,6 +110,15 @@ productCards.forEach((card) => {
 });
 
 document.addEventListener("click", (event) => {
+  const categoryLink = event.target.closest('a[href="#collares"], a[href="#pulseras"], a[href="#anillos"], .catalog-filter');
+  if (categoryLink) {
+    event.preventDefault();
+    const category = categoryLink.dataset.category || categoryLink.getAttribute("href").slice(1);
+    history.replaceState(null, "", `#${category === "todos" ? "catalogo" : category}`);
+    showCategory(category, true);
+    return;
+  }
+
   const button = event.target.closest(".add-to-cart");
   if (!button) return;
   const existing = cart.find((item) => item.id === button.dataset.id);
@@ -124,5 +162,27 @@ checkoutForm.addEventListener("submit", (event) => {
   message.classList.add("success");
   message.scrollIntoView({ behavior: "smooth", block: "nearest" });
 });
+
+const personalizeForm = document.querySelector("#personalize-form");
+const engravingInput = document.querySelector("#engraving-text");
+const fontSelect = document.querySelector("#font-style");
+const engravingPreview = document.querySelector(".engraving-preview");
+
+function updateEngravingPreview() {
+  document.querySelector("#engraving-preview").textContent = engravingInput.value.trim() || "Tu diseño";
+  engravingPreview.dataset.font = fontSelect.selectedOptions[0].dataset.style;
+}
+
+personalizeForm.addEventListener("input", updateEngravingPreview);
+personalizeForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const text = engravingInput.value.trim() || "una palabra a definir";
+  const message = `Hola Forja, quiero personalizar una joya con el texto “${text}” y estilo de fuente ${fontSelect.value}.`;
+  window.open(`https://wa.me/541162821988?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+});
+
+const initialCategory = window.location.hash.slice(1);
+showCategory(categoryNames[initialCategory] ? initialCategory : "todos");
+updateEngravingPreview();
 
 saveAndRender();

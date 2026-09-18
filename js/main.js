@@ -9,9 +9,18 @@ const formatPrice = new Intl.NumberFormat("es-AR", {
 const catalogCards = [...document.querySelectorAll("#catalogo .card")];
 const productCards = [...document.querySelectorAll(".card")];
 const unavailableModels = new Set([6, 11, 18, 24, 32, 38]);
+const materials = [
+  { id: "acero-blanco", name: "Acero Blanco" },
+  { id: "acero-quirurgico", name: "Acero Quirúrgico" },
+  { id: "acero-dorado", name: "Acero Dorado" },
+  { id: "plata-925", name: "Plata 925" },
+  { id: "enchapados", name: "Enchapados" },
+];
 const products = catalogCards.map((card, index) => {
   const model = index + 1;
   const name = card.querySelector(".meta b").textContent.trim();
+  const material = materials[index % materials.length];
+  card.dataset.material = material.id;
   return {
     id: `forja-${model}`,
     name,
@@ -19,6 +28,7 @@ const products = catalogCards.map((card, index) => {
     image: card.querySelector("img").getAttribute("src"),
     price: 14500 + ((model * 1900) % 18000),
     inStock: !unavailableModels.has(model),
+    material,
   };
 });
 
@@ -39,9 +49,12 @@ const categoryNames = {
   collares: "todos los collares",
   pulseras: "todas las pulseras",
   anillos: "todos los anillos",
+  aros: "todos los aros",
+  accesorios: "todos los accesorios",
 };
 
 let activeCategory = "todos";
+let activeMaterial = "todos";
 
 function showCategory(category = "todos", shouldScroll = false) {
   const selectedCategory = categoryNames[category] ? category : "todos";
@@ -52,7 +65,8 @@ function showCategory(category = "todos", shouldScroll = false) {
   catalogCards.forEach((card, index) => {
     const productCategory = card.querySelector(".meta b").textContent.trim().split(" ")[0].toLowerCase();
     const matchesCategory = selectedCategory === "todos" || productCategory === selectedCategory;
-    const isVisible = matchesCategory && (!onlyInStock || products[index].inStock);
+    const matchesMaterial = activeMaterial === "todos" || products[index].material.id === activeMaterial;
+    const isVisible = matchesCategory && matchesMaterial && (!onlyInStock || products[index].inStock);
     card.hidden = !isVisible;
     if (isVisible) visibleProducts += 1;
   });
@@ -61,8 +75,11 @@ function showCategory(category = "todos", shouldScroll = false) {
     filter.classList.toggle("is-active", filter.dataset.category === selectedCategory);
     filter.setAttribute("aria-current", filter.dataset.category === selectedCategory ? "true" : "false");
   });
+  const materialLabel = activeMaterial === "todos" ? "" : ` en ${materials.find((material) => material.id === activeMaterial).name}`;
   const stockLabel = onlyInStock ? " disponibles" : "";
-  catalogResult.textContent = `Mostrando ${categoryNames[selectedCategory]}${stockLabel} · ${visibleProducts} piezas`;
+  catalogResult.textContent = visibleProducts
+    ? `Mostrando ${categoryNames[selectedCategory]}${materialLabel}${stockLabel} · ${visibleProducts} piezas`
+    : `Todavía no hay piezas publicadas en esta selección. Probá con otro filtro.`;
 
   if (shouldScroll) {
     document.querySelector("#catalogo").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -111,12 +128,13 @@ productCards.forEach((card) => {
   const product = products.find((candidate) => candidate.image === image);
   if (!product) return;
   const meta = card.querySelector(".meta");
+  meta.insertAdjacentHTML("afterbegin", `<span class="product-material">${product.material.name}</span>`);
   meta.querySelector("small").textContent = product.model;
   meta.insertAdjacentHTML("beforeend", `<div class="product-buy"><div><strong>${formatPrice.format(product.price)}</strong><span class="stock ${product.inStock ? "stock-yes" : "stock-no"}">${product.inStock ? "En stock" : "Sin stock"}</span></div><button class="add-to-cart" type="button" data-id="${product.id}" ${product.inStock ? "" : "disabled"}>${product.inStock ? "SUMAR AL CARRITO" : "AGOTADO"}</button></div>`);
 });
 
 document.addEventListener("click", (event) => {
-  const categoryLink = event.target.closest('a[href="#collares"], a[href="#pulseras"], a[href="#anillos"], .catalog-filter');
+  const categoryLink = event.target.closest('a[href="#collares"], a[href="#pulseras"], a[href="#anillos"], a[href="#aros"], a[href="#accesorios"], .catalog-filter');
   if (categoryLink) {
     event.preventDefault();
     const category = categoryLink.dataset.category || categoryLink.getAttribute("href").slice(1);
@@ -134,6 +152,21 @@ document.addEventListener("click", (event) => {
   button.textContent = "AGREGADO ✓";
   setTimeout(() => { button.textContent = "SUMAR AL CARRITO"; }, 1100);
   openCart();
+});
+
+document.querySelectorAll(".material-filter, .material-nav a").forEach((control) => {
+  control.addEventListener("click", (event) => {
+    event.preventDefault();
+    activeMaterial = control.dataset.material;
+    document.querySelectorAll(".material-filter").forEach((filter) => {
+      filter.classList.toggle("is-active", filter.dataset.material === activeMaterial);
+      filter.setAttribute("aria-pressed", filter.dataset.material === activeMaterial ? "true" : "false");
+    });
+    document.querySelectorAll(".material-nav a").forEach((link) => {
+      link.classList.toggle("is-active", link.dataset.material === activeMaterial);
+    });
+    showCategory(activeCategory, true);
+  });
 });
 
 cartItems.addEventListener("click", (event) => {

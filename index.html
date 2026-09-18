@@ -27,21 +27,31 @@
       VENTA MINORISTA Y MAYORISTA · FORJA JOYAS & ACCESORIOS
     </div>
     <header class="head">
+      <nav class="material-nav" aria-label="Colecciones por material">
+        <a href="#catalogo" data-material="acero-blanco">Acero Blanco</a>
+        <a href="#catalogo" data-material="acero-quirurgico">Acero Quirúrgico</a>
+        <a href="#catalogo" data-material="acero-dorado">Acero Dorado</a>
+        <a href="#catalogo" data-material="plata-925">Plata 925</a>
+        <a href="#catalogo" data-material="enchapados">Enchapados</a>
+      </nav>
       <div class="headin">
         <a class="brand" href="#inicio"
           >FORJA<small>Joyas & Accesorios</small></a
         >
-        <nav class="nav">
+        <nav class="nav" aria-label="Categorías de productos">
           <a href="#collares">Collares</a><a href="#pulseras">Pulseras</a
-          ><a href="#anillos">Anillos</a><a href="#personaliza">Personalizá tu joya</a
-          ><a href="#ferias">Ferias</a><a href="#mayorista">Mayorista</a
-          ><a href="#contacto">Contacto</a>
+          ><a href="#anillos">Anillos</a><a href="#aros">Aros</a
+          ><a href="#accesorios">Accesorios</a>
         </nav>
         <button class="cart-trigger" id="open-cart" type="button" aria-label="Abrir carrito, 0 productos">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2.2 10.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20 7H7M9 20a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
           <span>Carrito</span><b id="cart-count">0</b>
         </button>
       </div>
+      <nav class="service-nav" aria-label="Servicios de Forja">
+        <a href="#personaliza">Personalizá tu joya</a><a href="#ferias">Ferias</a
+        ><a href="#mayorista">Mayorista</a><a href="#contacto">Contacto</a>
+      </nav>
     </header>
     <main id="inicio">
       <aside class="fair-strip" id="ferias" aria-labelledby="fairs-title">
@@ -217,8 +227,8 @@
       <section class="section" id="catalogo">
         <div class="title">
           <span class="eyebrow">Colección</span>
-          <h2>Todos los productos</h2>
-          <p>Elegí tus favoritos, revisá la disponibilidad y comprá en pocos pasos.</p>
+          <h2>Encontrá tu próxima joya</h2>
+          <p>Filtrá por tipo y material, elegí tus favoritos y comprá en pocos pasos.</p>
         </div>
         <div class="catalog-toolbar">
           <div class="catalog-filters" aria-label="Filtrar productos por categoría">
@@ -226,8 +236,18 @@
             <a class="catalog-filter" id="collares" href="#collares" data-category="collares">Collares</a>
             <a class="catalog-filter" id="pulseras" href="#pulseras" data-category="pulseras">Pulseras</a>
             <a class="catalog-filter" id="anillos" href="#anillos" data-category="anillos">Anillos</a>
+            <a class="catalog-filter" id="aros" href="#aros" data-category="aros">Aros</a>
+            <a class="catalog-filter" id="accesorios" href="#accesorios" data-category="accesorios">Accesorios</a>
           </div>
           <label class="stock-filter"><input id="stock-filter" type="checkbox" /> Solo disponibles</label>
+        </div>
+        <div class="material-filters" aria-label="Filtrar productos por material">
+          <button class="material-filter is-active" type="button" data-material="todos">Todos los materiales</button>
+          <button class="material-filter" type="button" data-material="acero-blanco">Acero Blanco</button>
+          <button class="material-filter" type="button" data-material="acero-quirurgico">Acero Quirúrgico</button>
+          <button class="material-filter" type="button" data-material="acero-dorado">Acero Dorado</button>
+          <button class="material-filter" type="button" data-material="plata-925">Plata 925</button>
+          <button class="material-filter" type="button" data-material="enchapados">Enchapados</button>
         </div>
         <p class="catalog-result" id="catalog-result" aria-live="polite">Mostrando todos los productos</p>
         <div class="grid">

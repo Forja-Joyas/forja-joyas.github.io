@@ -36,6 +36,10 @@
           ><a href="#anillos">Anillos</a><a href="#catalogo">Catálogo</a
           ><a href="#mayorista">Mayorista</a><a href="#contacto">Contacto</a>
         </nav>
+        <button class="cart-trigger" id="open-cart" type="button" aria-label="Abrir carrito, 0 productos">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2.2 10.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20 7H7M9 20a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
+          <span>Carrito</span><b id="cart-count">0</b>
+        </button>
       </div>
     </header>
     <main id="inicio">
@@ -159,7 +163,7 @@
         <div class="title">
           <span class="eyebrow">Colección</span>
           <h2>Todos los productos</h2>
-          <p>40 fotografías reales incorporadas en esta primera versión.</p>
+          <p>Elegí tus favoritos, revisá la disponibilidad y comprá en pocos pasos.</p>
         </div>
         <div class="grid">
           <article class="card">
@@ -703,6 +707,35 @@
         </p>
       </section>
     </main>
+    <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-labelledby="cart-title">
+      <div class="cart-head">
+        <div><span class="eyebrow">Tu selección</span><h2 id="cart-title">Carrito de compras</h2></div>
+        <button class="cart-close" id="close-cart" type="button" aria-label="Cerrar carrito">&times;</button>
+      </div>
+      <div class="cart-content">
+        <div id="cart-items" class="cart-items"></div>
+        <div id="cart-empty" class="cart-empty">
+          <span>◇</span><h3>Tu carrito está vacío</h3><p>Descubrí la colección y elegí esa pieza especial.</p>
+          <button class="text-button" id="continue-shopping" type="button">Ver productos</button>
+        </div>
+        <form class="checkout" id="checkout-form" hidden>
+          <div class="cart-total"><span>Total</span><strong id="cart-total">$0</strong></div>
+          <p class="checkout-note">El envío se coordina luego de confirmar tu compra.</p>
+          <fieldset><legend>Datos de entrega</legend>
+            <label>Email<input type="email" name="email" autocomplete="email" placeholder="tuemail@ejemplo.com" required /></label>
+            <label>Dirección de entrega<input type="text" name="address" autocomplete="street-address" placeholder="Calle, número, piso y localidad" required /></label>
+          </fieldset>
+          <fieldset><legend>¿Cómo querés pagar?</legend>
+            <label class="payment-option"><input type="radio" name="payment" value="Tarjeta" required /><span><b>Tarjeta de débito / crédito</b><small>Pago seguro con tu tarjeta</small></span></label>
+            <label class="payment-option"><input type="radio" name="payment" value="Transferencia" /><span><b>Transferencia bancaria</b><small>Recibí los datos al confirmar</small></span></label>
+            <label class="payment-option"><input type="radio" name="payment" value="Billetera virtual" /><span><b>Billeteras virtuales</b><small>Mercado Pago y otras billeteras</small></span></label>
+          </fieldset>
+          <button class="checkout-button" type="submit">FINALIZAR COMPRA</button>
+          <p class="form-message" id="form-message" role="status"></p>
+        </form>
+      </div>
+    </aside>
     <footer class="footer" id="contacto">
       FORJA JOYAS & ACCESORIOS · @forjajoyas
     </footer>

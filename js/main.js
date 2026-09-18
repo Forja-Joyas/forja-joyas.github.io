@@ -14,7 +14,8 @@ const materials = [
   { id: "acero-quirurgico", name: "Acero Quirúrgico" },
   { id: "acero-dorado", name: "Acero Dorado" },
   { id: "plata-925", name: "Plata 925" },
-  { id: "enchapados", name: "Enchapados" },
+  { id: "enchapado-oro-18-kts", name: "Enchapado Oro 18 Kts" },
+  { id: "abridores-oro", name: "Abridores de Oro" },
 ];
 const products = catalogCards.map((card, index) => {
   const model = index + 1;
@@ -50,6 +51,8 @@ const categoryNames = {
   pulseras: "todas las pulseras",
   anillos: "todos los anillos",
   aros: "todos los aros",
+  dijes: "todos los dijes",
+  conjuntos: "todos los conjuntos",
   accesorios: "todos los accesorios",
 };
 
@@ -134,7 +137,7 @@ productCards.forEach((card) => {
 });
 
 document.addEventListener("click", (event) => {
-  const categoryLink = event.target.closest('a[href="#collares"], a[href="#pulseras"], a[href="#anillos"], a[href="#aros"], a[href="#accesorios"], .catalog-filter');
+  const categoryLink = event.target.closest(".nav a, .catalog-filter");
   if (categoryLink) {
     event.preventDefault();
     const category = categoryLink.dataset.category || categoryLink.getAttribute("href").slice(1);

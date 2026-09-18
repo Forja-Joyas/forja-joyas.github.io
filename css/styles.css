@@ -99,7 +99,7 @@ h1 {
   margin: 22px 0 30px;
   color: var(--ink);
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(39px, 3.55vw, 58px);
+  font-size: clamp(29px, 2.65vw, 43px);
   font-weight: 500;
   line-height: 1.02;
   letter-spacing: -0.025em;
@@ -304,7 +304,7 @@ h1 {
   .hero p {
     max-width: 560px;
     margin: 18px 0 26px;
-    font-size: clamp(38px, 9vw, 52px);
+    font-size: clamp(29px, 6.75vw, 39px);
   }
   .heroImg {
     height: min(112vw, 560px);

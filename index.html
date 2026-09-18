@@ -77,6 +77,37 @@
         >
       </aside>
       <section class="hero">
+        <aside class="catalog-sidebar" aria-label="Filtros del catálogo">
+          <div class="filter-actions">
+            <button class="clear-filters" id="clear-filters" type="button">Limpiar filtros</button>
+          </div>
+          <details class="filter-group" open>
+            <summary>Tipo de joya <span aria-hidden="true"></span></summary>
+            <nav class="catalog-filters" aria-label="Filtrar productos por categoría">
+              <a class="catalog-filter is-active" href="#catalogo" data-category="todos">Todas las piezas</a>
+              <a class="catalog-filter" id="collares" href="#collares" data-category="collares">Collares</a>
+              <a class="catalog-filter" id="pulseras" href="#pulseras" data-category="pulseras">Pulseras</a>
+              <a class="catalog-filter" id="anillos" href="#anillos" data-category="anillos">Anillos</a>
+              <a class="catalog-filter" id="aros" href="#aros" data-category="aros">Aros</a>
+              <a class="catalog-filter" id="dijes" href="#dijes" data-category="dijes">Dijes</a>
+              <a class="catalog-filter" id="conjuntos" href="#conjuntos" data-category="conjuntos">Conjuntos</a>
+              <a class="catalog-filter" id="accesorios" href="#accesorios" data-category="accesorios">Accesorios</a>
+            </nav>
+          </details>
+          <details class="filter-group" open>
+            <summary>Material <span aria-hidden="true"></span></summary>
+            <div class="material-filters" aria-label="Filtrar productos por material">
+              <button class="material-filter is-active" type="button" data-material="todos">Todos los materiales</button>
+              <button class="material-filter" type="button" data-material="acero-blanco">Acero Blanco</button>
+              <button class="material-filter" type="button" data-material="acero-quirurgico">Acero Quirúrgico</button>
+              <button class="material-filter" type="button" data-material="acero-dorado">Acero Dorado</button>
+              <button class="material-filter" type="button" data-material="plata-925">Plata 925</button>
+              <button class="material-filter" type="button" data-material="enchapado-oro-18-kts">Enchapado Oro 18 Kts</button>
+              <button class="material-filter" type="button" data-material="abridores-oro">Abridores de Oro</button>
+            </div>
+          </details>
+          <label class="stock-filter"><input id="stock-filter" type="checkbox" /><span>Solo disponibles<small>Listos para comprar</small></span></label>
+        </aside>
         <div class="heroText">
           <span class="eyebrow">Forja · nueva selección</span>
           <h1>Para todos los días. Para cada ocasión.</h1>
@@ -233,41 +264,6 @@
           <p>Filtrá por tipo y material, elegí tus favoritos y comprá en pocos pasos.</p>
         </div>
         <div class="catalog-layout">
-          <aside class="catalog-sidebar" aria-label="Clasificar catálogo">
-            <div class="filter-heading">
-              <div>
-                <span class="eyebrow">Refiná tu búsqueda</span>
-                <h3>Clasificar</h3>
-              </div>
-              <button class="clear-filters" id="clear-filters" type="button">Limpiar</button>
-            </div>
-            <details class="filter-group" open>
-              <summary>Tipo de joya <span aria-hidden="true"></span></summary>
-              <nav class="catalog-filters" aria-label="Filtrar productos por categoría">
-                <a class="catalog-filter is-active" href="#catalogo" data-category="todos">Todas las piezas</a>
-                <a class="catalog-filter" id="collares" href="#collares" data-category="collares">Collares</a>
-                <a class="catalog-filter" id="pulseras" href="#pulseras" data-category="pulseras">Pulseras</a>
-                <a class="catalog-filter" id="anillos" href="#anillos" data-category="anillos">Anillos</a>
-                <a class="catalog-filter" id="aros" href="#aros" data-category="aros">Aros</a>
-                <a class="catalog-filter" id="dijes" href="#dijes" data-category="dijes">Dijes</a>
-                <a class="catalog-filter" id="conjuntos" href="#conjuntos" data-category="conjuntos">Conjuntos</a>
-                <a class="catalog-filter" id="accesorios" href="#accesorios" data-category="accesorios">Accesorios</a>
-              </nav>
-            </details>
-            <details class="filter-group" open>
-              <summary>Material <span aria-hidden="true"></span></summary>
-              <div class="material-filters" aria-label="Filtrar productos por material">
-                <button class="material-filter is-active" type="button" data-material="todos">Todos los materiales</button>
-                <button class="material-filter" type="button" data-material="acero-blanco">Acero Blanco</button>
-                <button class="material-filter" type="button" data-material="acero-quirurgico">Acero Quirúrgico</button>
-                <button class="material-filter" type="button" data-material="acero-dorado">Acero Dorado</button>
-                <button class="material-filter" type="button" data-material="plata-925">Plata 925</button>
-                <button class="material-filter" type="button" data-material="enchapado-oro-18-kts">Enchapado Oro 18 Kts</button>
-                <button class="material-filter" type="button" data-material="abridores-oro">Abridores de Oro</button>
-              </div>
-            </details>
-            <label class="stock-filter"><input id="stock-filter" type="checkbox" /><span>Solo disponibles<small>Listos para comprar</small></span></label>
-          </aside>
           <div class="catalog-products">
             <p class="catalog-result" id="catalog-result" aria-live="polite">Mostrando todos los productos</p>
             <div class="grid">

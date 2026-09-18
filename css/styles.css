@@ -115,12 +115,12 @@ a {
   margin: 32px auto 80px;
   padding: 0 32px;
   display: grid;
-  grid-template-columns: minmax(360px, 0.78fr) minmax(0, 1.22fr);
+  grid-template-columns: 230px minmax(340px, 0.78fr) minmax(0, 1.22fr);
   min-height: clamp(560px, 66vh, 690px);
 }
 .heroText {
   background: #eee7dc;
-  padding: clamp(56px, 6vw, 96px);
+  padding: clamp(42px, 4vw, 68px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -284,10 +284,9 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
-.catalog-layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); align-items: start; gap: 34px; }
-.catalog-sidebar { position: sticky; top: 164px; border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 35px rgba(45, 37, 27, .05); }
-.filter-heading { padding: 21px 19px 17px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); }
-.filter-heading h3 { margin: 3px 0 0; font-size: 27px; line-height: 1; }
+.catalog-layout { display: block; }
+.catalog-sidebar { border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 35px rgba(45, 37, 27, .05); }
+.filter-actions { padding: 12px 18px 10px; display: flex; justify-content: flex-end; border-bottom: 1px solid var(--line); }
 .clear-filters { padding: 0 0 2px; border: 0; border-bottom: 1px solid #bca681; background: none; color: var(--muted); font: 500 9px "DM Sans", sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
 .clear-filters:hover { color: var(--ink); border-color: var(--ink); }
 .filter-group { border-bottom: 1px solid var(--line); }
@@ -540,7 +539,7 @@ h1 {
   height: 30px;
   fill: currentColor;
 }
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
   .headin { padding: 13px 18px 8px; flex-wrap: wrap; }
   .nav { order: 3; width: 100%; padding: 4px 0 2px; flex-wrap: nowrap; gap: 22px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; }
   .nav::-webkit-scrollbar { display: none; }
@@ -574,8 +573,7 @@ h1 {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .catalog-layout { grid-template-columns: 1fr; gap: 22px; }
-  .catalog-sidebar { position: static; }
+  .hero .catalog-sidebar { order: -1; }
   .catalog-products .grid { grid-template-columns: repeat(2, 1fr); }
   .catalog-filters, .material-filters { grid-template-columns: repeat(2, 1fr); gap: 3px; }
   .story {

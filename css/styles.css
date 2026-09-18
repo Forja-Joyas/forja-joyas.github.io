@@ -169,6 +169,47 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
+.fair-strip {
+  width: min(calc(100% - 48px), 1080px);
+  margin: -36px auto 70px;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  background: var(--white);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  box-shadow: 0 10px 30px rgba(45, 37, 27, 0.06);
+}
+.fair-strip-heading h2 { margin: 3px 0 0; font-size: 29px; line-height: 1; }
+.fair-strip-info { padding-left: 28px; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; }
+.fair-strip-info strong { font: 500 18px "Cormorant Garamond", serif; }
+.fair-strip-info span { color: var(--muted); font-size: 12px; }
+.personalize {
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  background: #eee7dc;
+  padding: clamp(30px, 5vw, 64px);
+  gap: clamp(36px, 6vw, 80px);
+  align-items: center;
+}
+.personalize-copy h2 { margin: 6px 0 14px; font-size: clamp(40px, 5vw, 58px); line-height: .95; }
+.personalize-copy p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+.dafont-link { display: inline-block; margin-top: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--gold); color: #725a36; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.personalize-studio { background: var(--white); padding: clamp(25px, 4vw, 42px); box-shadow: 0 18px 45px rgba(45, 37, 27, .08); }
+.personalize-studio label { display: block; margin: 0 0 7px; color: var(--muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; }
+.personalize-studio input, .personalize-studio select { width: 100%; margin-bottom: 18px; border: 1px solid var(--line); background: var(--bg); padding: 13px; color: var(--ink); font: 14px "DM Sans", sans-serif; }
+.engraving-preview { min-height: 118px; margin-bottom: 18px; border: 1px solid #d7c7ae; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fbf8f2; }
+.engraving-preview small { color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .12em; }
+.engraving-preview strong { margin-top: 8px; font: 500 40px "Cormorant Garamond", serif; }
+.engraving-preview[data-font="script"] strong { font-family: cursive; font-style: italic; }
+.engraving-preview[data-font="handwritten"] strong { font-family: "Comic Sans MS", cursive; font-weight: 400; }
+.engraving-preview[data-font="serif"] strong { font-family: Georgia, serif; }
+.engraving-preview[data-font="sans"] strong { font-family: Arial, sans-serif; letter-spacing: .04em; }
+.engraving-preview[data-font="gothic"] strong { font-family: "Times New Roman", serif; font-weight: 700; }
+.engraving-preview[data-font="typewriter"] strong { font-family: "Courier New", monospace; font-weight: 400; }
+.personalize-button { width: 100%; border: 0; cursor: pointer; }
 .cat {
   position: relative;
   height: 420px;
@@ -207,6 +248,11 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
+.catalog-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: -5px 0 8px; }
+.catalog-filter { min-width: 105px; padding: 10px 16px; border: 1px solid var(--line); background: white; text-align: center; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; }
+.catalog-filter:hover, .catalog-filter.is-active { border-color: var(--ink); background: var(--ink); color: white; }
+.catalog-result { margin: 0 0 24px; color: var(--muted); text-align: center; font-size: 12px; }
+.card[hidden] { display: none; }
 .card {
   background: white;
   border: 1px solid var(--line);
@@ -471,6 +517,9 @@ h1 {
   .story {
     grid-template-columns: 1fr;
   }
+  .fair-strip { margin-top: -26px; grid-template-columns: 1fr auto; gap: 14px 22px; }
+  .fair-strip-info { grid-column: 1 / -1; grid-row: 2; padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .personalize { grid-template-columns: 1fr; }
   .fairs {
     margin-right: 20px;
     margin-left: 20px;
@@ -494,4 +543,10 @@ h1 {
   .fair-card { grid-template-columns: 1fr; }
   .fair-date { min-height: 145px; }
   .fair-details { padding: 30px 24px 34px; }
+  .fair-strip { width: calc(100% - 40px); margin-bottom: 52px; padding: 18px; grid-template-columns: 1fr; }
+  .fair-strip .fair-link { justify-self: start; }
+  .fair-strip-info { grid-column: auto; grid-row: auto; }
+  .catalog-filter { min-width: calc(50% - 4px); }
+  .personalize { margin-right: 20px; margin-left: 20px; padding: 32px 20px; }
+  .personalize-studio { padding: 24px 18px; }
 }

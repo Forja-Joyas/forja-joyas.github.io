@@ -33,7 +33,7 @@
         >
         <nav class="nav">
           <a href="#collares">Collares</a><a href="#pulseras">Pulseras</a
-          ><a href="#anillos">Anillos</a><a href="#catalogo">Catálogo</a
+          ><a href="#anillos">Anillos</a><a href="#personaliza">Personalizá tu joya</a
           ><a href="#ferias">Ferias</a><a href="#mayorista">Mayorista</a
           ><a href="#contacto">Contacto</a>
         </nav>
@@ -80,6 +80,49 @@
             ></a
           >
         </div>
+      </section>
+      <aside class="fair-strip" id="ferias" aria-labelledby="fairs-title">
+        <div class="fair-strip-heading">
+          <span class="eyebrow">Encontranos en persona</span>
+          <h2 id="fairs-title">Próximas ferias</h2>
+        </div>
+        <div class="fair-strip-info">
+          <strong>Próxima fecha: a confirmar</strong>
+          <span>Conocé y probate una selección especial de piezas Forja.</span>
+        </div>
+        <a
+          class="fair-link"
+          href="https://wa.me/541162821988?text=Hola%20Forja%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20las%20pr%C3%B3ximas%20ferias."
+          target="_blank"
+          rel="noopener noreferrer"
+          >Avisame la próxima fecha <span aria-hidden="true">→</span></a
+        >
+      </aside>
+      <section class="personalize section" id="personaliza" aria-labelledby="personalize-title">
+        <div class="personalize-copy">
+          <span class="eyebrow">Una pieza solo tuya</span>
+          <h2 id="personalize-title">Personalizá tu joya</h2>
+          <p>Escribí tu nombre o palabra, elegí un estilo de tipografía y envianos tu idea. Confirmamos juntos el diseño antes de producirla.</p>
+          <a class="dafont-link" href="https://www.dafont.com/es/" target="_blank" rel="noopener noreferrer">Explorar todas las fuentes en dafont.com <span aria-hidden="true">↗</span></a>
+        </div>
+        <form class="personalize-studio" id="personalize-form">
+          <label for="engraving-text">Tu nombre o palabra</label>
+          <input id="engraving-text" name="engraving" type="text" maxlength="20" value="Forja" placeholder="Escribí acá" />
+          <label for="font-style">Elegí el estilo de fuente</label>
+          <select id="font-style" name="font">
+            <option value="Lemon Tuesday" data-style="script">Lemon Tuesday · Caligráfica</option>
+            <option value="Brittany Signature" data-style="handwritten">Brittany Signature · Manuscrita</option>
+            <option value="Caviar Dreams" data-style="serif">Caviar Dreams · Clásica</option>
+            <option value="Bebas Neue" data-style="sans">Bebas Neue · Moderna</option>
+            <option value="Old London" data-style="gothic">Old London · Gótica</option>
+            <option value="JMH Typewriter" data-style="typewriter">JMH Typewriter · Máquina</option>
+          </select>
+          <div class="engraving-preview" aria-live="polite">
+            <small>Vista previa orientativa</small>
+            <strong id="engraving-preview">Forja</strong>
+          </div>
+          <button class="btn personalize-button" type="submit">QUIERO PERSONALIZARLA</button>
+        </form>
       </section>
       <section class="colorBlock">
         <div class="section" style="margin-bottom: 0">
@@ -166,6 +209,13 @@
           <h2>Todos los productos</h2>
           <p>Elegí tus favoritos, revisá la disponibilidad y comprá en pocos pasos.</p>
         </div>
+        <div class="catalog-filters" aria-label="Filtrar productos por categoría">
+          <a class="catalog-filter is-active" href="#catalogo" data-category="todos">Todos</a>
+          <a class="catalog-filter" id="collares" href="#collares" data-category="collares">Collares</a>
+          <a class="catalog-filter" id="pulseras" href="#pulseras" data-category="pulseras">Pulseras</a>
+          <a class="catalog-filter" id="anillos" href="#anillos" data-category="anillos">Anillos</a>
+        </div>
+        <p class="catalog-result" id="catalog-result" aria-live="polite">Mostrando todos los productos</p>
         <div class="grid">
           <article class="card">
             <div class="photo">
@@ -688,39 +738,6 @@
             </div>
           </article>
         </div>
-      </section>
-      <section class="fairs" id="ferias" aria-labelledby="fairs-title">
-        <div class="fairs-intro">
-          <span class="eyebrow">Encontranos en persona</span>
-          <h2 id="fairs-title">Próximas Ferias</h2>
-          <p>
-            Vení a conocer, probarte y elegir tus piezas Forja favoritas.
-            Llevamos una selección especial de joyas y accesorios.
-          </p>
-          <a class="btn fairs-button" href="#catalogo">CONOCÉ LA COLECCIÓN</a>
-        </div>
-        <article class="fair-card">
-          <div class="fair-date" aria-label="Fecha a confirmar">
-            <span>Próxima</span>
-            <strong>Fecha</strong>
-            <small>A confirmar</small>
-          </div>
-          <div class="fair-details">
-            <span class="tag">Agenda Forja</span>
-            <h3>Próxima feria a confirmar</h3>
-            <p>
-              Muy pronto vamos a anunciar acá la feria y la fecha de nuestro
-              próximo encuentro.
-            </p>
-            <a
-              class="fair-link"
-              href="https://wa.me/541162821988?text=Hola%20Forja%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20las%20pr%C3%B3ximas%20ferias."
-              target="_blank"
-              rel="noopener noreferrer"
-              >Consultar por WhatsApp <span aria-hidden="true">→</span></a
-            >
-          </div>
-        </article>
       </section>
       <section class="section story">
         <img src="images/collares-19.jpg" alt="Forja Joyas" />

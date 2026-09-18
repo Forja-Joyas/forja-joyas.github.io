@@ -7,6 +7,7 @@ const formatPrice = new Intl.NumberFormat("es-AR", {
 });
 
 const catalogCards = [...document.querySelectorAll("#catalogo .card")];
+const productCards = [...document.querySelectorAll(".card")];
 const unavailableModels = new Set([6, 11, 18, 24, 32, 38]);
 const products = catalogCards.map((card, index) => {
   const model = index + 1;
@@ -24,6 +25,7 @@ const products = catalogCards.map((card, index) => {
 let cart = JSON.parse(localStorage.getItem("forja-cart") || "[]").filter((item) =>
   products.some((product) => product.id === item.id && product.inStock),
 );
+const savedBuyer = JSON.parse(localStorage.getItem("forja-buyer") || "{}");
 
 const drawer = document.querySelector("#cart-drawer");
 const backdrop = document.querySelector("#cart-backdrop");
@@ -69,14 +71,16 @@ function saveAndRender() {
   document.querySelector("#cart-total").textContent = formatPrice.format(total);
 }
 
-catalogCards.forEach((card, index) => {
-  const product = products[index];
+productCards.forEach((card) => {
+  const image = card.querySelector("img").getAttribute("src");
+  const product = products.find((candidate) => candidate.image === image);
+  if (!product) return;
   const meta = card.querySelector(".meta");
   meta.querySelector("small").textContent = product.model;
-  meta.insertAdjacentHTML("beforeend", `<div class="product-buy"><div><strong>${formatPrice.format(product.price)}</strong><span class="stock ${product.inStock ? "stock-yes" : "stock-no"}">${product.inStock ? "En stock" : "Sin stock"}</span></div><button class="add-to-cart" type="button" data-id="${product.id}" ${product.inStock ? "" : "disabled"}>${product.inStock ? "AGREGAR" : "AGOTADO"}</button></div>`);
+  meta.insertAdjacentHTML("beforeend", `<div class="product-buy"><div><strong>${formatPrice.format(product.price)}</strong><span class="stock ${product.inStock ? "stock-yes" : "stock-no"}">${product.inStock ? "En stock" : "Sin stock"}</span></div><button class="add-to-cart" type="button" data-id="${product.id}" ${product.inStock ? "" : "disabled"}>${product.inStock ? "SUMAR AL CARRITO" : "AGOTADO"}</button></div>`);
 });
 
-document.querySelector("#catalogo").addEventListener("click", (event) => {
+document.addEventListener("click", (event) => {
   const button = event.target.closest(".add-to-cart");
   if (!button) return;
   const existing = cart.find((item) => item.id === button.dataset.id);
@@ -84,7 +88,7 @@ document.querySelector("#catalogo").addEventListener("click", (event) => {
   else cart.push({ id: button.dataset.id, quantity: 1 });
   saveAndRender();
   button.textContent = "AGREGADO ✓";
-  setTimeout(() => { button.textContent = "AGREGAR"; }, 1100);
+  setTimeout(() => { button.textContent = "SUMAR AL CARRITO"; }, 1100);
   openCart();
 });
 
@@ -103,6 +107,15 @@ document.querySelector("#close-cart").addEventListener("click", closeCart);
 document.querySelector("#continue-shopping").addEventListener("click", closeCart);
 backdrop.addEventListener("click", closeCart);
 document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeCart(); });
+
+checkoutForm.elements.email.value = savedBuyer.email || "";
+checkoutForm.elements.address.value = savedBuyer.address || "";
+checkoutForm.addEventListener("input", () => {
+  localStorage.setItem("forja-buyer", JSON.stringify({
+    email: checkoutForm.elements.email.value,
+    address: checkoutForm.elements.address.value,
+  }));
+});
 
 checkoutForm.addEventListener("submit", (event) => {
   event.preventDefault();

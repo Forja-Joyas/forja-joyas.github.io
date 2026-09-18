@@ -184,6 +184,19 @@ cartItems.addEventListener("click", (event) => {
 
 document.querySelector("#stock-filter").addEventListener("change", () => showCategory(activeCategory));
 
+document.querySelector("#clear-filters").addEventListener("click", () => {
+  activeMaterial = "todos";
+  document.querySelector("#stock-filter").checked = false;
+  document.querySelectorAll(".material-filter").forEach((filter) => {
+    const isActive = filter.dataset.material === "todos";
+    filter.classList.toggle("is-active", isActive);
+    filter.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+  document.querySelectorAll(".material-nav a").forEach((link) => link.classList.remove("is-active"));
+  history.replaceState(null, "", "#catalogo");
+  showCategory("todos");
+});
+
 document.querySelector("#open-cart").addEventListener("click", openCart);
 document.querySelector("#close-cart").addEventListener("click", closeCart);
 document.querySelector("#continue-shopping").addEventListener("click", closeCart);

@@ -489,16 +489,6 @@ h1 {
   font-size: 44px;
   margin: 0 0 15px;
 }
-.wholesale {
-  background: #1c1c1c;
-  color: white;
-  text-align: center;
-  padding: 60px 25px;
-}
-.wholesale h2 {
-  font-size: 44px;
-  margin: 0 0 10px;
-}
 .footer {
   border-top: 1px solid var(--line);
   padding: 35px 24px;
